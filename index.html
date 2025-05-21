@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Medicine Reminder</title>
+  <style>
+    body { font-family: Arial, sans-serif; max-width: 500px; margin: 2em auto; }
+    input, select, button { margin: 0.5em 0; padding: 0.5em; width: 100%; }
+    ul { list-style: none; padding-left: 0; }
+    li { margin: 0.5em 0; }
+  </style>
+</head>
+<body>
+
+  <h1>Medicine Reminder</h1>
+  
+  <form id="medForm">
+    <input type="text" id="medName" placeholder="Medicine Name" required />
+    
+    <label for="doseTime">Dose Time:</label>
+    <input type="time" id="doseTime" required />
+    
+    <label for="frequency">Frequency:</label>
+    <select id="frequency" required>
+      <option value="24">Once a day</option>
+      <option value="12">Twice a day</option>
+      <option value="8">Every 8 hours</option>
+      <option value="6">Every 6 hours</option>
+    </select>
+    
+    <button type="submit">Add Reminder</button>
+  </form>
+  <button id="logoutBtn">Logout</button>
+
+  <script>
+   document.addEventListener('DOMContentLoaded', () => {
+  // Redirect to login if no loggedInUser
+  if (!localStorage.getItem('loggedInUser')) {
+    window.location.href = 'login.html';
+  }
+
+  const logoutBtn = document.getElementById('logoutBtn');
+  logoutBtn.addEventListener('click', () => {
+    localStorage.removeItem('loggedInUser');
+    window.location.href = 'login.html';
+  });
+
+  // You can also initialize your reminders here by calling functions from app.js
+});
+  </script>
+  
+  <h2>Upcoming Reminders:</h2>
+  <ul id="reminderList"></ul>
+
+  <script src="app.js"></script>
+</body>
+</html>
