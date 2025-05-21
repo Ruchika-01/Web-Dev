@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Login - Medicine Reminder</title>
+  <style>
+    body { font-family: Arial, sans-serif; max-width: 400px; margin: 3em auto; }
+    input, button { width: 100%; padding: 0.5em; margin: 0.5em 0; }
+  </style>
+</head>
+<body>
+
+  <h2>Login to Medicine Reminder</h2>
+  <form id="loginForm">
+    <input type="text" id="username" placeholder="Username" required />
+    <input type="password" id="password" placeholder="Password" required />
+    <button type="submit">Login</button>
+  </form>
+
+  <script>
+    const loginForm = document.getElementById('loginForm');
+
+    // Dummy credentials (replace with real backend or better auth)
+    const dummyUser = { username: 'user1', password: 'pass123' };
+
+    loginForm.addEventListener('submit', e => {
+      e.preventDefault();
+      const username = document.getElementById('username').value.trim();
+      const password = document.getElementById('password').value;
+
+      if (username === dummyUser.username && password === dummyUser.password) {
+        // Save login state in localStorage
+        localStorage.setItem('loggedInUser', username);
+        // Redirect to medicine reminder app page
+        window.location.href = 'index.html';
+      } else {
+        alert('Invalid username or password');
+      }
+    });
+
+    // If already logged in, redirect automatically
+    if (localStorage.getItem('loggedInUser')) {
+    window.location.href = 'index.html';
+    }
+  </script>
+
+
+</body>
+</html>
